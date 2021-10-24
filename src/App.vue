@@ -6,8 +6,10 @@
           class="piclogo"
           src="https://cdn.discordapp.com/attachments/727144001215660095/898986945726783608/N_0.png"
         />
-        <b-tlogo href="#">NEW</b-tlogo>
-        <b-tlogo1 href="#">NEWS</b-tlogo1>
+        <div>
+          <b-tlogo href="#">NEW</b-tlogo>
+          <b-tlogo1 href="#">NEWS</b-tlogo1>
+        </div>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -24,14 +26,20 @@
                   ><i class="far fa-futbol"></i>กีฬา</b-nav-items
                 ></router-link
               >
-              <router-link to="/">
+              <router-link to="/entertainment">
                 <b-nav-items href="#"
                   ><i class="fas fa-film"></i>บันเทิง</b-nav-items
                 ></router-link
               >
-              <router-link to="/">
+              <router-link to="/business">
                 <b-nav-items href="#"
-                  ><i class="fas fa-chart-line"></i>เศรษฐกิจ</b-nav-items
+                  ><i class="fas fa-chart-line"></i>ธุรกิจ</b-nav-items
+                ></router-link
+              >
+
+              <router-link to="/technology">
+                <b-nav-items href="#"
+                  ><i class="fas fa-globe"></i>เทคโนโลยี</b-nav-items
                 ></router-link
               >
             </b-navbar-nav>
@@ -109,6 +117,19 @@ div {
 div a {
   text-decoration: none;
 }
+
+b-nav-item-dropdown {
+  /* padding: 0 15px 0 15px;
+  font-size: 18px;
+  color: #008e97;
+  align-items: center;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+  margin-left: 10px; */
+}
+
 b-nav-items {
   padding: 0 15px 0 15px;
   font-size: 18px;
