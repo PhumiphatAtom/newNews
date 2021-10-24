@@ -44,11 +44,17 @@
         <b-container id="containerComment">
           <b-container id="containerComment2">
             <h3>ADD COMMENT</h3>
+            <h6 style="text-align: left;margin-bottom: 5px;font-weight: bold;">
+              Name
+            </h6>
             <b-input
               id="inputComment"
               placeholder="Enter your name"
               v-model="commentInfo.author"
             ></b-input>
+            <h6 style="text-align: left;margin-bottom: 5px;font-weight: bold;">
+              Comment
+            </h6>
             <b-form-textarea
               id="areaBox"
               size="sm"
@@ -62,28 +68,27 @@
                 Comment
               </b-button>
             </div>
-
-            
-
-            <ul
-              id="containerComment3"
+            <b-container
+              class="bv-example-row"
               v-for="Items in commentData"
               v-bind:key="Items"
             >
-              
-              <p>
-                <b-avatar
-                variant="info"
-                src="https://placekitten.com/300/300"
-              ></b-avatar>
-                {{ Items.author }}
-              </p>
-              <p>
-                {{ Items.comment }}
-              </p>
-            </ul>
+              <b-row >
+                <b-col sm="1" align-self="start">
+                  <b-avatar
+                    variant="info"
+                    src="http://www.mcicon.com/wp-content/uploads/2021/01/People_User_1-copy-4.jpg"
+                  ></b-avatar>
+                </b-col>
+                <b-col id="containerComment3" sm="11">
+                  {{ Items.author }} <br />
+                  {{ Items.comment }}
+                </b-col>
+              </b-row>
+            </b-container>
           </b-container>
         </b-container>
+        
       </div>
     </div>
   </div>
@@ -221,6 +226,7 @@ h3 {
 
 #inputComment {
   width: 50%;
+  margin-bottom: 10px;
 }
 
 #areaBox {
@@ -234,23 +240,36 @@ h3 {
 }
 
 #containerComment3 {
-  width: 50%;
-  height: 100%;
+  /* width: 50%; */
   text-align: start;
   border-top: 10px;
   border-color: black;
   border-radius: 25px;
   margin-top: 10px;
+  margin-bottom: 10px;
   background-color: #c7c7c7;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  word-break: break-all;
+  box-shadow: 8px 8px 5px #888888;
+}
+
+#text-comment {
+  text-align: start;
   word-break: break-all;
 }
 
-b-avatar {
+.col-sm-1 {
+  height: 60px;
+  text-align: left;
+}
+
+/* b-avatar {
   border-radius: 100px;
   border-color: black;
-}
+} */
 
 /* #avatar {
   text-align: start;
