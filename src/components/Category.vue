@@ -81,8 +81,8 @@
                   ></b-avatar>
                 </b-col>
                 <b-col id="containerComment3" sm="11">
-                  {{ Items.author }} <br />
-                  {{ Items.comment }}
+                 <p style="margin-bottom: 0px; font-weight: bold"> {{ Items.author }} </p>
+                  <p>{{ Items.comment }}</p>
                 </b-col>
               </b-row>
             </b-container>
@@ -159,7 +159,7 @@ export default {
   height: 463px;
   margin: 20px 20px 20px 20px;
   border-radius: 18px;
-  background: white;
+  background: rgb(255, 255, 255);
   box-shadow: 5px 5px 10px rgba(199, 199, 199, 0.9);
   text-align: center;
   transition: 0.5s ease;
@@ -240,7 +240,7 @@ h3 {
 }
 
 #containerComment3 {
-  /* width: 50%; */
+  width: auto;
   text-align: start;
   border-top: 10px;
   border-color: black;
@@ -249,16 +249,24 @@ h3 {
   margin-bottom: 10px;
   background-color: #c7c7c7;
   padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   padding-right: 20px;
   padding-left: 20px;
-  word-break: break-all;
+  word-break: break;
   box-shadow: 8px 8px 5px #888888;
+  justify-content: flex-start;
+  counter-reset: none;
+  display: initial;
+}
+
+div.row {
+  justify-content: flex-start;
+  flex-wrap: inherit;
 }
 
 #text-comment {
   text-align: start;
-  word-break: break-all;
+  
 }
 
 .col-sm-1 {

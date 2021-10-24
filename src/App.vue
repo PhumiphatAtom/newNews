@@ -31,15 +31,14 @@
                   ><i class="fas fa-film"></i>บันเทิง</b-nav-items
                 ></router-link
               >
-              <router-link to="/business">
-                <b-nav-items href="#"
-                  ><i class="fas fa-chart-line"></i>ธุรกิจ</b-nav-items
-                ></router-link
-              >
-
               <router-link to="/technology">
                 <b-nav-items href="#"
                   ><i class="fas fa-globe"></i>เทคโนโลยี</b-nav-items
+                ></router-link
+              >
+              <router-link to="/business">
+                <b-nav-items href="#"
+                  ><i class="fas fa-chart-line"></i>ธุรกิจ</b-nav-items
                 ></router-link
               >
             </b-navbar-nav>
