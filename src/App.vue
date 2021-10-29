@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div class="container">
-      <b-navbar toggleable="lg" type="light" variant="white" id="navbar">
+    <b-navbar
+      toggleable="lg"
+      type="light"
+      variant="white"
+      id="navbar"
+      fixed="top"
+    >
+      <div class="container">
         <img
           class="piclogo"
           src="https://cdn.discordapp.com/attachments/727144001215660095/898986945726783608/N_0.png"
@@ -42,27 +48,12 @@
                 ></router-link
               >
             </b-navbar-nav>
-
-            <b-nav-input>
-              <b-form-input
-                size="sm"
-                class="inputs"
-                placeholder="Search"
-                id="__BVID__12"
-              ></b-form-input>
-            </b-nav-input>
-            <b-button
-              size="sm"
-              class="my-2 my-sm-0"
-              type="submit"
-              id="__BVID__14"
-              >Search</b-button
-            >
           </div>
           <!-- Right aligned nav items -->
         </b-collapse>
-      </b-navbar>
-    </div>
+      </div>
+    </b-navbar>
+
     <router-view />
   </div>
 </template>
@@ -91,16 +82,7 @@ b-tlogo1 {
   font-family: "DM Sans", sans-serif;
   font-size: 30px;
 }
-b-nav-input {
-  text-decoration: none;
-  list-style: none;
-  margin-right: 5px;
-}
-#__BVID__12 {
-  width: 150px;
-  border-radius: 50px;
-  border-color: #f58220;
-}
+
 #__BVID__14 {
   background: #f58220;
   border-radius: 50px;
@@ -117,16 +99,10 @@ div a {
   text-decoration: none;
 }
 
-b-nav-item-dropdown {
-  /* padding: 0 15px 0 15px;
-  font-size: 18px;
-  color: #008e97;
-  align-items: center;
-  text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-right: 10px;
-  margin-left: 10px; */
+a.router-link-exact-active b-nav-items {
+  background-color: #008e97;
+  color: white;
+  border-radius: 30px;
 }
 
 b-nav-items {

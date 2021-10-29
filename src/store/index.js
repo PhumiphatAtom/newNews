@@ -34,8 +34,8 @@ export default new Vuex.Store({
           },
         })
         .then((res) => {
-          state.commit("setPanorama", res.data.articles.slice(0, 10));
           state.commit("setNewsData", res.data.articles);
+          state.commit("setPanorama", res.data.articles.slice(0, 10));
           state.commit("setLoading", false);
         });
     },

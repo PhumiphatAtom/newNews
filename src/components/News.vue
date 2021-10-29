@@ -1,43 +1,71 @@
 <template>
   <div>
     <div v-if="loading">
-      <b-spinner
-        style="width: 3rem; height: 3rem;"
-        label="Large Spinner"
-      ></b-spinner>
+      <div class="page-loader">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
     </div>
     <div v-else>
-      <b-carousel
-        id="carousel-1"
-        v-model="slide"
-        :interval="4000"
-        controls
-        indicators
-        background="#eee"
-        @sliding-start="onSlideStart"
-        @sliding-end="onSlideEnd"
-      >
-        <!-- Text slides with image -->
-        <b-carousel-slide
-          v-for="item in panorama"
-          v-bind:key="item.id"
-          v-bind:img-src="item.urlToImage"
-        ></b-carousel-slide>
-      </b-carousel>
+      <b-container>
+        <b-carousel
+          id="carousel-1"
+          v-model="slide"
+          :interval="4000"
+          controls
+          indicators
+          background="#eee"
+          @sliding-start="onSlideStart"
+          @sliding-end="onSlideEnd"
+        >
+          <!-- Text slides with image -->
+          <b-carousel-slide
+            v-for="item in panorama"
+            v-bind:key="item.id"
+            v-bind:img-src="item.urlToImage"
+            class="carousel-item"
+          ></b-carousel-slide>
+        </b-carousel>
+      </b-container>
 
-      <div class="cards" v-for="item in newsData" v-bind:key="item.id">
-        <div class="card-image">
-          <img class="images" v-bind:src="item.urlToImage" />
+      <div class="container">
+        <div class="headernews">
+          <h1 class="textheader"><i class="fas fa-newspaper"></i>ข่าววันนี้</h1>
+          <b-form-input
+            size="sm"
+            class="inputs"
+            placeholder="พิมพ์คำค้นหา...."
+            v-model="search"
+            id="__BVID__12"
+            style="margin-block: auto;"
+          ></b-form-input>
         </div>
-        <div class="card-text">
-          <span class="date">{{
-            moment(item.publishedAt)
-              .locale("th")
-              .add(543, 'year').format('LL')
-          }}</span>
-          <h2>{{ item.title }}</h2>
+      </div>
+
+      <div v-if="newsData.length > 0">
+        <div class="cards" v-for="item in newsData" v-bind:key="item.id">
+          <div class="card-image">
+            <img class="images" v-bind:src="item.urlToImage" />
+          </div>
+          <div class="card-text">
+            <span class="date">{{
+              moment(item.publishedAt)
+                .locale("th")
+                .fromNow()
+            }}</span>
+            <h2>{{ item.title }}</h2>
+          </div>
+          <a class="card-stats" v-bind:href="item.url"> อ่านเพิ่มเติม </a>
         </div>
-        <a class="card-stats" v-bind:href="item.url"> อ่านเพิ่มเติม </a>
+      </div>
+      <div v-else>
+        <h1 style="margin-top: 30px;">
+          Not Found
+        </h1>
+      </div>
+
+      <div class="container">
+        <div class="headernews2"></div>
       </div>
     </div>
   </div>
@@ -48,6 +76,12 @@ import moment from "moment";
 
 export default {
   name: "News",
+  data() {
+    return {
+      search: null,
+      notFound: false,
+    };
+  },
   mounted() {
     this.$store.dispatch("fetchNewsData");
   },
@@ -56,7 +90,18 @@ export default {
   },
   computed: {
     newsData() {
-      return this.$store.getters.getNewsData;
+      if (this.search) {
+        return this.$store.getters.getNewsData.filter((item) => {
+          console.log(item.title.match(this.search));
+          return item.title.match(this.search);
+        });
+      }
+      // else if (this.search != item.title) {
+      //   return ("Not found")
+      // }
+      else {
+        return this.$store.getters.getNewsData;
+      }
     },
     panorama() {
       return this.$store.getters.getPanoramaData;
@@ -64,6 +109,12 @@ export default {
     loading() {
       return this.$store.getters.getLoading;
     },
+    // filteredList() {
+    //   console.log(this.newsData);
+    //   return this.newsData.filter((item) => {
+    //     return item.title.match(this.search);
+    //   });
+    // },
   },
   watch: {
     "$route.params.category"(value) {
@@ -135,7 +186,18 @@ export default {
   box-shadow: 5px 5px 15px rgba(238, 238, 238, 0.6);
 }
 
-.carousel-inner > .carousel-item > img {
+#carousel-1 {
+  margin-top: 75px;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: black;
+  padding: 16px;
+  border-radius: 16px;
+  background-size: 16px;
+}
+
+/* .carousel-inner > .carousel-item > img {
   height: 400px;
   width: auto !important;
   margin: auto !important;
@@ -145,5 +207,108 @@ export default {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   color: black !important;
+} */
+
+.textheader {
+  text-align: start;
+  align-items: center;
+  color: #008e97;
+  font-size: 32px;
+  font-weight: 800;
+}
+.headernews {
+  width: 100%;
+  background-color: white;
+  border-bottom: 4px solid #f58220;
+  padding: 8px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headernews2 {
+  width: 100%;
+  background-color: white;
+  border-bottom: 4px solid #f58220;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+#__BVID__12 {
+  /* margin: 16px 0 0 0; */
+  width: 300px;
+  border-radius: 50px;
+  border-color: #f58220;
+  font-size: 16px;
+}
+
+.carousel-item > img {
+  max-height: 360px;
+  object-fit: cover;
+  object-position: center;
+  min-height: 200px;
+}
+
+@media (max-width: 991.2px) {
+  #carousel-1 {
+    margin-top: 75px;
+  }
+  .textheader {
+    font-size: 22px;
+    font-weight: 800;
+  }
+  #box-input {
+    display: inherit;
+  }
+
+  #__BVID__12 {
+    margin: 16px 0 0 0;
+    width: 170px;
+    border-radius: 50px;
+    border-color: #f58220;
+    font-size: 16px;
+  }
+}
+
+.page-loader {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+
+  flex-direction: column;
+  z-index: 999;
+  transform-origin: bottom center;
+  animation: rotate 3s linear infinite;
+}
+.circle {
+  display: inline-block;
+  background-color: #f58220;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: grow 1.5s linear infinite;
+  margin: -10px;
+}
+.circle:nth-child(2) {
+  background-color: #008e97;
+  animation-delay: 0.75s;
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes grow {
+  50% {
+    transform: scale(1);
+  }
 }
 </style>
