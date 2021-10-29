@@ -10,7 +10,6 @@
       <b-container>
         <b-carousel
           id="carousel-1"
-          v-model="slide"
           :interval="4000"
           controls
           indicators
@@ -95,11 +94,7 @@ export default {
           console.log(item.title.match(this.search));
           return item.title.match(this.search);
         });
-      }
-      // else if (this.search != item.title) {
-      //   return ("Not found")
-      // }
-      else {
+      } else {
         return this.$store.getters.getNewsData;
       }
     },
@@ -109,12 +104,6 @@ export default {
     loading() {
       return this.$store.getters.getLoading;
     },
-    // filteredList() {
-    //   console.log(this.newsData);
-    //   return this.newsData.filter((item) => {
-    //     return item.title.match(this.search);
-    //   });
-    // },
   },
   watch: {
     "$route.params.category"(value) {
@@ -197,18 +186,6 @@ export default {
   background-size: 16px;
 }
 
-/* .carousel-inner > .carousel-item > img {
-  height: 400px;
-  width: auto !important;
-  margin: auto !important;
-  border-radius: 5px;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  color: black !important;
-} */
-
 .textheader {
   text-align: start;
   align-items: center;
@@ -237,7 +214,6 @@ export default {
 }
 
 #__BVID__12 {
-  /* margin: 16px 0 0 0; */
   width: 300px;
   border-radius: 50px;
   border-color: #f58220;

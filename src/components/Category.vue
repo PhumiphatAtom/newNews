@@ -10,7 +10,6 @@
       <b-container>
         <b-carousel
           id="carousel-1"
-          v-model="slide"
           :interval="4000"
           controls
           indicators
@@ -129,7 +128,6 @@ export default {
   name: "Category",
   data() {
     return {
-      // newsData: [],
       commentInfo: {
         author: null,
         comment: null,
@@ -139,7 +137,6 @@ export default {
     };
   },
   mounted() {
-    //   console.log("test",this.$route.params.test)
     this.fetchData(this.$route.params.category);
   },
   methods: {
@@ -323,18 +320,6 @@ div.row {
   border-radius: 16px;
   background-size: 16px;
 }
-
-/* .carousel-inner > .carousel-item > img {
-  height: 400px;
-  width: auto !important;
-  margin: auto !important;
-  border-radius: 5px;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  color: black !important;
-} */
 
 .textheader {
   text-align: start;

@@ -12,7 +12,6 @@ export default new Vuex.Store({
   },
   mutations: {
     setNewsData(state, payload) {
-      // console.log(payload)
       state.newsData = payload;
     },
     setPanorama(state, payload) {
